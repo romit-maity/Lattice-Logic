@@ -60,4 +60,20 @@
   
   - JSON format ensures compatibility with both the **Neo4j ingestion (Graph)** and the **PyTorch Geometric Data object (Tensors)**.
 
+
+
+## 2. Graph Construction & Feature Encoding
+
+#### Decision: Mapping string IDs to an Adjacency Matrix *('edge_index')*.
+
+- **Why?**
+  
+  - **Neural networks** cannot process strings. 
+  
+  - We use a ***"Label Encoding*** strategy for ***task status*** to ensure the **GNN** can mathematically differentiate between 'Blocked' and 'Done'.
+
+- **Data Object:**
+  
+  - Utilizing the ***torch_geometric.data*** data structure to store ***node features (x)*** and ***connectivity (edge_index)*** in a GPU-ready format.
+
 ---
