@@ -4,8 +4,6 @@
 
 # Phase 1: Infrastructure & Environment
 
-
-
 ## 1. Infrastructure
 
 #### **Decision**: Implementation of a Dockerized Multi-Database Stack.
@@ -43,13 +41,23 @@
   - Benchmarking via **RETURN 1 Cypher query**  for **Neo4j**.
   
   - Ensures the ***"Ground Truth*** is reachable before any logic is executed.
-    
-    
 
 ---
 
 # Phase 2: GNN Ingestion
 
+## 1. GNN Data Engineering
 
+#### Decision: Generating synthetic JSON logs with intentional *"padding"* and *"bottlenecks"*.
 
-## 1.
+- **Why?**
+  
+  - **GNNs** require "Data Density" to learn patterns.
+  
+  - By forcing specific tasks ***(like AETH-10)*** to have ***high dependency counts***, we create a "Ground Truth" for the model to identify as a ***high-risk failure point***.
+
+- **Protocol:**
+  
+  - JSON format ensures compatibility with both the **Neo4j ingestion (Graph)** and the **PyTorch Geometric Data object (Tensors)**.
+
+---

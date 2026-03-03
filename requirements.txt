@@ -2,3 +2,8 @@ python-dotenv
 neo4j
 chromadb
 pytest
+
+pandas
+networkx
+torch
+torch-geometric
