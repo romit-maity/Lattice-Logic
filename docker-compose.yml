@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:community
+    container_name: aether_neo4j
+    ports:
+      - "7474:7474" # HTTP Browser
+      - "7687:7687" # Bolt Protocol
+    environment:
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
+    volumes:
+      - ./data/neo4j/data:/data
+      - ./data/neo4j/logs:/logs
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "${NEO4J_PASSWORD}", "RETURN 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  chromadb:
+    image: chromadb/chroma
+    container_name: aether_chroma
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/chroma:/chroma/data
+    environment:
+      - IS_PERSISTENT=TRUE
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
