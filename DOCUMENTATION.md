@@ -76,4 +76,34 @@
   
   - Utilizing the ***torch_geometric.data*** data structure to store ***node features (x)*** and ***connectivity (edge_index)*** in a GPU-ready format.
 
+
+
+## 3. GNN Model Architecture
+
+#### Decision: Implementing a 2-layer *Graph Convolutional Network (GCN)*.
+
+- **Why?**
+  
+  - Unlike standard analytics, a **GCN** uses ***"Message Passing"***.
+  
+  - If *Task A* is blocked, its high-risk *"signal"* is passed to *Task B* via the dependency edge.
+
+- **Node Criticality Index:**
+  
+  - The model outputs a continuous float representing the likelihood of a ***"cascading failure"***.
+
+- **Benchmark:**
+  
+  - Successfully generated non-zero risk scores for simulated nodes.
+
 ---
+
+# Phase 3:
+
+
+
+
+
+
+
+ 
